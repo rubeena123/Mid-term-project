@@ -12,33 +12,45 @@
     <script src="/factory.recipes.js"> </script>
   </head>
   <body ng-controller="mainController as main" >
-    <h1 class="jumbotron">
+    <!--Navbar -->
+    <ul id ="nav"class="nav nav-tabs">
+  <li role="presentation" class="active"><a href="#"><b>HOME</b></a></li>
+  <li role="presentation"><a href="#"><b>RECIPES</b></a></li>
+  <li role="presentation"><a href="#"><b>FUN FOOD FACTS</b></a></li>
+</ul>
+    <div class="container">
+    <div class="photo">
+      
+    <h1 class="text-center font-big"  >
       {{main.greeting}}
     </h1> 
-   
-    <b> Enter your ingredients: </b> <input placeholder="lets get started..." ng-model="main.input">
+      <div class="content">
+      </div>
+       <div id="search" class="text-center">
+      
+        <h2 <em><b> Enter your ingredients:</b></em>  <input placeholder="lets get started..." ng-model="main.input">
      <input type="button" ng-click="main.NewIngredients()" value="Add"> <br>
-     
-      <li ng-repeat="ingredients in main.AddIngredients">
-        {{ingredients}}
+      </h2>
+         <div class="entered-list"
+      <ol ng-repeat="ingredients in main.AddIngredients">
+      <b>{{ingredients}}</b>
         <span ng-click="main.RemoveFromAddIngredients(ingredients)" class="glyphicon glyphicon-remove"></span>
-     </li>
-   
-    
+     </ol>
+    </div>
     
     <div  class="container">
 
-  <div class="row">
-      <div ng-repeat="recipe in main.showRecipes| filter:main.checkIngredients" class="col-xs-12">
-        <span> {{recipe.Name}} </span>
-        
-        <ul class="Ingredients-name">
-          <li ng-repeat="ingredient in recipe.Ingredients" class="Ingredients-name-ing">{{ingredient}}</li>
-        </ul>
-     <button type="button" class="btn btn-primary btn-lg" ng-click="main.showRecipe(recipe)" ng-show="main.checkIngredients(recipe)" type="button" class="btn btn-success"> <b>TaDa! You have a Match:</b></button>
+  <div class="row" class="text-left">
+      <div ng-repeat="recipe in main.showRecipes| filter:main.checkIngredients" class="col-xs-6">
+       <div class="text-center">
+         <button type="button"  id="moveButton" type="button" ng-click="main.showRecipe(recipe)" ng-show="main.checkIngredients(recipe)" > <b>TaDa! You have a Match:</b></button>
+        </div>
+     </div>
+  </div>
+    </div>
           </div>
         </div>
-
+      </div>
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -49,11 +61,22 @@
         <h4 class="modal-title" id="myModalLabel"><b> Here is the recipe:</b></h4>
       </div>
       <div class="modal-body">
-        {{main.activeRecipe}}
+      <b>Recipe Name:</b>
+      <li>{{main.activeRecipe.Name}}:</li></br>
+      <b>List of Ingredients:</b>
+      <li ng-Repeat="listofing in main.activeRecipe.Ingredients">{{listofing}}</li></br>
+      <b> Directions:</b>
+      <Div ng-Repeat="step in main.activeRecipe.Directions">{{step}}</Div> </br></br>
+      <b> You can eat this for:</b>
+      <li>{{main.activeRecipe.Type}}</li></br>
+      <b>Total time needed:</b>
+      <li>{{main.activeRecipe.Ready}}</li></br>
+      <img ng-src= "{{main.activeRecipe.Img}}">
+        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        
+  </div>
       </div>
     </div>
   </div>

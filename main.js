@@ -10,7 +10,7 @@ function mainCtrl(recipeList){
   var main=this;
 main.showRecipes=recipeList.showRecipes; 
 main.greeting="Match made in kitchen!";
-main.AddIngredients=["Shrimp","Garlicloves","Honey","Lemon juice","Dijon mustard"]; //list you have
+main.AddIngredients=[]; //list you have
   // this is the data i can remove before the final presentation!!!
 main.NewIngredients=function(){
 main.AddIngredients.push(main.input)}
@@ -26,6 +26,7 @@ return angular.equals(recipe.Ingredients,main.AddIngredients)
   //main.AddIngredients.forEach(function(ing){
   // if(recipe.ingredients.indexOf(ing)>=0){
     // target--
+// TRY THIS AFTER MID TERM
 }
 
 main.showRecipe=function(recipe){
